@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+        <link rel="stylesheet" href="chartist.min.css">
+        <script type="text/javascript" src="chartist.min.js"></script>
+        <style type="text/css">
+            .ct-line {
+                stroke-width: 1px;
+            }
+            
+            .wide {
+                width: 90%;
+                max-width: 500px;
+            }
+            
+            .btn {
+                font-size: 2em; 
+                padding: 1em; 
+                border: 1px solid black; 
+            }
+        </style>
+        <script type="text/javascript">
+            var stop = 0;
+            var timer;
+            
+            // Initialize the measurement
+            //  - create worker
+            //  - register message callback for results
+            function init() {
+                timer = new Worker("measure.js");
+                timer.onmessage = function(event) {
+                    var parsed = JSON.parse(event.data);
+                    plot(parsed[0], parsed[1]);
+                }
+                document.getElementById("stopbtn").onclick = stopit;
+                document.getElementById("restartbtn").onclick = function() {
+                    window.location.reload();
+                };
+            }
+            
+            // Start the measurement
+            //   - initialize worker
+            //   - start worker
+            function startit() {
+                timer.postMessage("init");
+                timer.postMessage("start");
+            }
+            
+            // Stop the measurement
+            //   - stop the worker
+            //   - prepare UI to plot results
+            function stopit() {
+                stop = !stop;
+                if (!stop) {
+                    document.getElementById("stopbtn").style.display = "none";
+                    document.getElementById("divplot").style.display = "";
+                    document.getElementById("restartbtn").style.display = "";
+                    timer.postMessage("stop");
+                } else {
+                    document.getElementById("stopbtn").value = "Stop";
+                    document.getElementById("stopbtn").blur();
+                    setTimeout(startit, 0);
+                }
+            }
+            
+            // Plot the results
+            //   - receives data from worker via message callback
+            //   - plots the measurements
+            function plot(results, presses) {
+                var res = [];
+                // remove unused array elements
+                for (var i = 20; i < results.length; i++) {
+                    if (results[i] == 0) break;
+                    res[i] = results[i];
+                }
+            
+                // plot
+                new Chartist.Line('.ct-chart', {
+                    series: [res]
+                }, {
+                    showPoint: false,
+                    axisX: {
+                        showGrid: false,
+                        showLabel: false,
+                        offset: 0
+                    },
+                    axisY: {
+                        showGrid: false,
+                        showLabel: false,
+                        offset: 0
+                    },
+                    fullWidth: true,
+                    chartPadding: {
+                        right: 40
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body style="font-family: Verdana, sans-serif;" onload="init();">
+        <center>
+            <h1>Enter PIN</h1>
+            <img src="pin.png" class="wide">
+            <br />
+            <input type="button" id="stopbtn" value="Start" class="wide btn" />
+            <br>
+            <div class="ct-chart ct-perfect-fourth" id="divplot" style="display: none;"></div>
+            <input type="button" id="restartbtn" value="Restart" style="display: none;" class="wide btn" />
+        </center>
+    </body>
+</html>

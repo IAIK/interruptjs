@@ -16,8 +16,10 @@ Try the live demo at [https://interruptjs.github.io/interruptjs/](https://interr
 
 A trace might look something like this:
 
-![Interrupt trace - touch x2, swipe, touch x3](https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace1.png  "Interrupt trace - touch x2, swipe, touch x3") 
-![Interrupt trace - touch x2, swipe, touch x3](https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace2.png  "Interrupt trace - touch x2, swipe, touch x3") 
+| Xiaomi Redmi Note 3 | Google Nexus 5 |
+|---------|---------|
+| <img src="https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace1.png" width="200"> | <img src="https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace2.png" width="200"> |
+| Touch 2x, Swipe, Touch 3x | Touch 2x, Swipe, Touch 3x  |
 
 ## Compatibility
 

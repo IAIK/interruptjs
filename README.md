@@ -5,7 +5,7 @@ Using this implementation, it is possible to detect hardware interrupts, such as
 
 ## Demo
 
-Try the live demo at [https://interruptjs.github.io/interruptjs/](https://interruptjs.github.io/interruptjs/) 
+Try the live demo at [https://iaik.github.io/interruptjs/](https://iaik.github.io/interruptjs/)
 
 1. Load the page (either on a mobile device or on your computer) - the PIN pad has no function, don't worry if it doesn't do anything. 
 2. Press "Start"
@@ -18,7 +18,7 @@ A trace might look something like this:
 
 | Xiaomi Redmi Note 3 | Google Nexus 5 |
 |---------|---------|
-| <img src="https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace1.png" width="200"> | <img src="https://github.com/interruptjs/interruptjs/raw/master/screenshots/trace2.png" width="200"> |
+| <img src="https://github.com/iaik/interruptjs/raw/master/screenshots/trace1.png" width="200"> | <img src="https://github.com/iaik/interruptjs/raw/master/screenshots/trace2.png" width="200"> |
 | Touch 2x, Swipe, Touch 3x | Touch 2x, Swipe, Touch 3x  |
 
 ## Compatibility
